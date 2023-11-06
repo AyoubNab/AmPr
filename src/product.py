@@ -21,7 +21,8 @@ class Product:
         if len(productDescription) < 4:
             productDescription = "EMPTY"
         if len(productDescription) > 200:
-            productDescription = productDescription[:20]
+            productDescription = productDescription[:197]
+            productDescription += "..."
 
         self.productName = productName
         self.productPrice = productPrice
@@ -84,10 +85,13 @@ class Product:
         return self.productDescription
     
     def changePriceType(self):
+        #change la monnaie utilise et convertis la valeur
+        #parametres : rien
+        #retourne : rien
         if self.priceType == "EURO":
             self.productPrice = self.productPrice * 1.07
             self.priceType = "DOLLAR"
-
-
-
-        
+        if self.priceType == "DOLLAR":
+            self.productPrice = self.productPrice * 0.93
+            self.priceType = "EURO"
+       
