@@ -13,16 +13,16 @@ git clone <url_du_dépôt>
 Utilisation
 Product.py
 Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs attributs :
-```python
-{
-“productName” : le nom du produit
-“productPrice” : le prix du produit
-“productId” : l’identifiant du produit
-“productQuantity” : la quantité de produits qui sont dans le pack (utilisé dans la fonction card pour les achats)
-“productCategory” : la catégorie du produit
-“priceType” : la monnaie utilisée, soit EURO / DOLLAR
-“productDescription” : la description du produit
-}
+```
+
+-“productName” : le nom du produit
+-“productPrice” : le prix du produit
+-“productId” : l’identifiant du produit
+-“productQuantity” : la quantité de produits qui sont dans le pack (utilisé dans la fonction card pour les achats)
+-“productCategory” : la catégorie du produit
+-“priceType” : la monnaie utilisée, soit EURO / DOLLAR
+-“productDescription” : la description du produit
+
 ```
 
 Voici comment vous pouvez créer un produit :
