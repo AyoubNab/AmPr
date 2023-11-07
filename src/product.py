@@ -8,7 +8,7 @@ class Product:
         #retourne : globalProduct
 
         #verification de la monnaire utilise si elle n'est pas reconnue automatiquement EURO
-        if priceType != "EURO" or priceType != "DOLLAR":
+        if priceType != "EURO" and priceType != "DOLLAR":
             priceType = "EURO"
 
         #verification de la taille du nom du produit si elle est trop petite ou grande elle est racourics
@@ -32,24 +32,25 @@ class Product:
         self.priceType = priceType
         self.productDescription = productDescription
         #AVERTISSEMENT : TOUT CHANGEMENT DU PLACEMENT DE CES VARIABLES DANS LA VARIABLE GLOBAL PRODUCT PEUVENT CAUSER UNE ERREUR
-        #BIEN UPDATE : getProducPerType -> card.py, getCardPrice -> card.py
-        self.globalProduct = [self.productName,
-                               self.productPrice,
-                                 self.productId,
-                                   self.productType,
-                                     self.priceType,
-                                       self.productDescription]
+        self.globalProduct = {"productName":self.productName,
+                            "productPrice":self.productPrice,
+                                "productId":self.productId,
+                                "productType":self.productType,
+                                    "priceType":self.priceType,
+                                    "productDescription":self.productDescription}
+       
     
     def updateGloablProduct(self) -> None:
         #met a jour la variable globalProduct
         #parametres : rien
         #retourne : rien
-        self.globalProduct = [self.productName,
-                               self.productPrice,
-                                 self.productId,
-                                   self.productType,
-                                     self.priceType,
-                                       self.productDescription]
+        #AVERTISSEMENT : TOUT CHANGEMENT DU PLACEMENT DE CES VARIABLES DANS LA VARIABLE GLOBAL PRODUCT PEUVENT CAUSER UNE ERREUR
+        self.globalProduct = {"productName":self.productName,
+                               "productPrice":self.productPrice,
+                                 "productId":self.productId,
+                                   "productType":self.productType,
+                                     "priceType":self.priceType,
+                                       "productDescription":self.productDescription}
 
     def getProduct(self) -> None:
         #retourne la variable globalProduct (qui stocke tout les atribus du produit)
