@@ -13,7 +13,7 @@ git clone <url_du_dépôt>
 Utilisation
 Product.py
 Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs attributs :
-```Typescript
+```python
 “productName” : le nom du produit
 “productPrice” : le prix du produit
 “productId” : l’identifiant du produit
