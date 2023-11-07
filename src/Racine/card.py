@@ -1,4 +1,4 @@
-from product import Product
+from variable import COEFFICIENT_DOLLAR
 
 class Card:
     def __init__(self):
@@ -9,10 +9,10 @@ class Card:
         #Ajoute un produit au pannier
         self.card[product["productId"]] = product
     
-    def getProducType(self, type: str):
+    def filterProducCategory(self, type: str):
         result = []
         for product in self.card:
-            if product["productType"] == type:
+            if product["productCategory"] == type:
                 result.append(product)
         return result
     
@@ -41,7 +41,7 @@ class Card:
         for product in self.card:
             print(self.card[product]["priceType"])
             if self.card[product]["priceType"] != "EURO":
-                total += self.card[product]["productPrice"] * 0.93
+                total += self.card[product]["productPrice"] * COEFFICIENT_DOLLAR
             elif self.card[product]["priceType"] == "EURO":
                 total += self.card[product]["productPrice"]
         return total
@@ -64,7 +64,12 @@ class Card:
     
     def deleteProductId(self, id: str):
         #Supprime un produit du panier
-        del self.card[id]
+        if self.card[id]["productQuantity"] == 0:
+            del self.card[id]
+        else:
+            self.card[id]["productQuantity"] -= 1
+            
+            
 
 #exemple utilisation :
 """

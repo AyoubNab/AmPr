@@ -1,10 +1,11 @@
+from Racine.variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
 class Product:
-    def __init__(self, productName: str, productPrice: float, productId:str, productType:str ="ALL", priceType:str ="EURO", productDescription: str = "EMPTY"):
+    def __init__(self, productName: str, productPrice: float, productId: str, productQuantity: int, productCategory: str ="ALL", priceType: str ="EURO", productDescription: str = "EMPTY"):
         #creation des variables necessaires pour le produit
         #stockage des donnee dans la variable globalProduct qui sera utilise ulterieurment
         #parametres : productName -> string, productPrice -> nombre a virgule, productId -> string
         #parametres : priceType -> string (EURO / DOLLAR), productDescription -> string
-        #parametres : productType -> string (ALL / FOOD / DRINK / ELECTRONICS ...)
+        #parametres : productCategory -> string (ALL / FOOD / DRINK / ELECTRONICS ...)
         #retourne : globalProduct
 
         #verification de la monnaire utilise si elle n'est pas reconnue automatiquement EURO
@@ -28,16 +29,19 @@ class Product:
         self.productName = productName
         self.productPrice = productPrice
         self.productId = productId
-        self.productType = productType
+        self.productQuantity = productQuantity
+        self.productCategory = productCategory
         self.priceType = priceType
         self.productDescription = productDescription
+        
         #AVERTISSEMENT : TOUT CHANGEMENT DU PLACEMENT DE CES VARIABLES DANS LA VARIABLE GLOBAL PRODUCT PEUVENT CAUSER UNE ERREUR
         self.globalProduct = {"productName":self.productName,
-                            "productPrice":self.productPrice,
-                                "productId":self.productId,
-                                "productType":self.productType,
-                                    "priceType":self.priceType,
-                                    "productDescription":self.productDescription}
+                                "productPrice":self.productPrice,
+                                  "productId":self.productId,
+                                    "productQuantity":self.productQuantity,
+                                      "productCategory":self.productCategory,
+                                        "priceType":self.priceType,
+                                          "productDescription":self.productDescription}
        
     
     def updateGloablProduct(self) -> None:
@@ -46,11 +50,12 @@ class Product:
         #retourne : rien
         #AVERTISSEMENT : TOUT CHANGEMENT DU PLACEMENT DE CES VARIABLES DANS LA VARIABLE GLOBAL PRODUCT PEUVENT CAUSER UNE ERREUR
         self.globalProduct = {"productName":self.productName,
-                               "productPrice":self.productPrice,
-                                 "productId":self.productId,
-                                   "productType":self.productType,
-                                     "priceType":self.priceType,
-                                       "productDescription":self.productDescription}
+                                "productPrice":self.productPrice,
+                                  "productId":self.productId,
+                                    "productQuantity":self.productQuantity,
+                                      "productCategory":self.productCategory,
+                                        "priceType":self.priceType,
+                                          "productDescription":self.productDescription}
 
     def getProduct(self) -> None:
         #retourne la variable globalProduct (qui stocke tout les atribus du produit)
@@ -84,11 +89,11 @@ class Product:
         #retourne : productId
         return self.productId
 
-    def getProductType(self) -> str:
+    def getProductCategory(self) -> str:
         #retourne le type du produit
         #parametres : rien
-        #retourne : productType
-        return self.productType
+        #retourne : productCategory
+        return self.productCategory
 
     def getPriceType(self) -> str:
         #retourne la monnaie utilise
@@ -108,9 +113,9 @@ class Product:
         #parametres : rien
         #retourne : rien
         if self.priceType == "EURO":
-            self.productPrice = self.productPrice * 1.07
+            self.productPrice = self.productPrice * COEFFICIENT_DOLLAR
             self.priceType = "DOLLAR"
         if self.priceType == "DOLLAR":
-            self.productPrice = self.productPrice * 0.93
+            self.productPrice = self.productPrice * COEFFICIENT_EURO
             self.priceType = "EURO"
        
