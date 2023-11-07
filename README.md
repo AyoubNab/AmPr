@@ -8,11 +8,12 @@ Pour installer ce projet, vous pouvez cloner ce dépôt en utilisant la commande
 
 ```bash
 git clone <url_du_dépôt>
+```
 
 Utilisation
 Product.py
 Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs attributs :
-
+```Typescript
 “productName” : le nom du produit
 “productPrice” : le prix du produit
 “productId” : l’identifiant du produit
@@ -20,9 +21,10 @@ Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs at
 “productCategory” : la catégorie du produit
 “priceType” : la monnaie utilisée, soit EURO / DOLLAR
 “productDescription” : la description du produit
+```
 
 Voici comment vous pouvez créer un produit :
-
+```python
   from product import Product
 - # Créer un produit
   product = Product("Nom du produit", 10.0, "id_du_produit", 100, "Catégorie", "EURO", "Description du produit")
@@ -33,7 +35,7 @@ Voici comment vous pouvez créer un produit :
 
 - # Obtenir le prix du produit
   price = product.getProductPrice()
-
+```
 Contribution
 Les contributions sont les bienvenues. Pour contribuer, vous pouvez ouvrir une issue ou faire une pull request.
 
