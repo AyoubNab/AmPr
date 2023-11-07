@@ -20,6 +20,7 @@ class Product:
         #verification de la taille de la description du produit si elle est trop petite ou grande elle est racouric
         if len(productDescription) < 4:
             productDescription = "EMPTY"
+
         if len(productDescription) > 200:
             productDescription = productDescription[:197]
             productDescription += "..."
@@ -30,6 +31,8 @@ class Product:
         self.productType = productType
         self.priceType = priceType
         self.productDescription = productDescription
+        #AVERTISSEMENT : TOUT CHANGEMENT DU PLACEMENT DE CES VARIABLES DANS LA VARIABLE GLOBAL PRODUCT PEUVENT CAUSER UNE ERREUR
+        #BIEN UPDATE : getProducPerType -> card.py, getCardPrice -> card.py
         self.globalProduct = [self.productName,
                                self.productPrice,
                                  self.productId,
@@ -44,8 +47,9 @@ class Product:
         self.globalProduct = [self.productName,
                                self.productPrice,
                                  self.productId,
-                                   self.priceType,
-                                     self.productDescription]
+                                   self.productType,
+                                     self.priceType,
+                                       self.productDescription]
 
     def getProduct(self) -> None:
         #retourne la variable globalProduct (qui stocke tout les atribus du produit)
@@ -60,6 +64,7 @@ class Product:
         self.productDescription = newDescription
         self.updateGloablProduct()
 
+
     def getProductName(self) -> str:
         #retourne le nom du produit
         #parametres : rien
@@ -71,6 +76,18 @@ class Product:
         #parametres : rien
         #retourne : productPrice
         return self.productPrice
+    
+    def getProductId(self) -> str:
+        #retourne l'id du produit
+        #parametres : rien
+        #retourne : productId
+        return self.productId
+
+    def getProductType(self) -> str:
+        #retourne le type du produit
+        #parametres : rien
+        #retourne : productType
+        return self.productType
 
     def getPriceType(self) -> str:
         #retourne la monnaie utilise
@@ -83,6 +100,7 @@ class Product:
         #parametres : rien
         #retourne : productDescription
         return self.productDescription
+    
     
     def changePriceType(self):
         #change la monnaie utilise et convertis la valeur
