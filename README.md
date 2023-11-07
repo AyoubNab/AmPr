@@ -30,8 +30,9 @@ Voici comment vous pouvez créer un produit :
   from product import Product
 - # Créer un produit
   product = Product("Nom du produit", 10.0, "id_du_produit", 100, "Catégorie", "EURO", "Description du produit")
-  Vous pouvez également obtenir les informations sur un produit en utilisant les méthodes fournies :
-
+```
+Vous pouvez également obtenir les informations sur un produit en utilisant les méthodes fournies :
+```python
 - # Obtenir le nom du produit
   name = product.getProductName()
 
