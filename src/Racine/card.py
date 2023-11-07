@@ -1,9 +1,16 @@
-from variable import COEFFICIENT_DOLLAR
+from variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
+from IdGenerator import GenerateId
+from product import Product
 
 class Card:
     def __init__(self):
         #J'initialise le panier vide
         self.card = {}
+
+    def getProductId(self, productName: str):
+        for product in self.card:
+            if self.card[product]["productName"] == productName:
+                return product
 
     def addProduct(self, product: dict):
         #Ajoute un produit au pannier
@@ -16,11 +23,7 @@ class Card:
                 result.append(product)
         return result
     
-    def getProduct(self, index: int):
-        try:
-            return self.card[index]
-        except:
-            return None
+
         
     def getCard(self):
         #Retourne le panier
@@ -39,7 +42,6 @@ class Card:
         #Calcule le prix total du panier
         total = 0
         for product in self.card:
-            print(self.card[product]["priceType"])
             if self.card[product]["priceType"] != "EURO":
                 total += self.card[product]["productPrice"] * COEFFICIENT_DOLLAR
             elif self.card[product]["priceType"] == "EURO":
@@ -69,19 +71,113 @@ class Card:
         else:
             self.card[id]["productQuantity"] -= 1
             
-            
+    def buyProduct(self, productName: str, quantity: int, currentMoney: float, currentMoneyType: str) -> None:
+        #permet de acheter des produits
+        #parametres : quantity -> nombre
+        #retourne : rien
+        product_id = self.getProductId(productName)
+        price = 0
+        if quantity > self.card[product_id]["productQuantity"]:
+            return
+        if currentMoneyType == "EURO":
+            if self.card[product_id]["priceType"] == "DOLLAR":
+                price = self.card[product_id]["productPrice"] * COEFFICIENT_DOLLAR
+                price *= quantity
+                if price > currentMoney:
+                    return
+                else:
+                    currentMoney -= price
+                    for _ in range(quantity):
+                        self.deleteProductId(product_id)
+                    stock = {"productName":productName,
+                                "productPrice":self.card[product_id]["productPrice"],
+                                  "productId":product_id,
+                                    "productQuantity":self.card[product_id]["productQuantity"],
+                                      "productCategory":self.card[product_id]["productCategory"],
+                                        "priceType":self.card[product_id]["priceType"],
+                                          "productDescription":self.card[product_id]["productDescription"]}
+                    
+                    print(f"New stock for {productName} -> {self.card[product_id]}")
+                    return [currentMoney, stock]
+                
+            else:
+                price = self.card[product_id]["productPrice"] * quantity
+                if price > currentMoney:
+                    return
+                else:
+                    currentMoney -= price
+                    for _ in range(quantity):
+                        self.deleteProductId(product_id)
+                    stock = {"productName":productName,
+                                "productPrice":self.card[product_id]["productPrice"],
+                                  "productId":product_id,
+                                    "productQuantity":quantity,
+                                      "productCategory":self.card[product_id]["productCategory"],
+                                        "priceType":self.card[product_id]["priceType"],
+                                          "productDescription":self.card[product_id]["productDescription"]}
+                    
+                    print(f"New stock for {productName} -> {self.card[product_id]}")
+                    return [currentMoney, stock]
 
-#exemple utilisation :
-"""
+        elif currentMoneyType == "DOLLAR":
+            if self.card[product_id]["priceType"] == "EURO":
+                price = self.card[product_id]["productPrice"] * COEFFICIENT_EURO
+                price *= quantity
+                if price > currentMoney:
+                    return
+                else:
+                    currentMoney -= price
+                    for _ in range(quantity):
+                        self.deleteProductId(product_id)
+                    
+                    stock = {"productName":productName,
+                                "productPrice":self.card[product_id]["productPrice"],
+                                  "productId":product_id,
+                                    "productQuantity":self.card[product_id]["productQuantity"],
+                                      "productCategory":self.card[product_id]["productCategory"],
+                                        "priceType":self.card[product_id]["priceType"],
+                                          "productDescription":self.card[product_id]["productDescription"]}
+                    
+                    print(f"New stock for {productName} -> {self.card[product_id]}")
+                    return [currentMoney, stock] 
+                
+            else:
+                price = self.card[product_id]["productPrice"] * quantity
+                if price > currentMoney:
+                    return
+                else:
+                    currentMoney -= price
+                    for _ in range(quantity):
+                        self.deleteProductId(product_id)
+                    
+                    stock = {"productName":productName,
+                                "productPrice":self.card[product_id]["productPrice"],
+                                  "productId":product_id,
+                                    "productQuantity":self.card[product_id]["productQuantity"],
+                                      "productCategory":self.card[product_id]["productCategory"],
+                                        "priceType":self.card[product_id]["priceType"],
+                                          "productDescription":self.card[product_id]["productDescription"]}
+                    
+                    print(f"New stock for {productName} -> {self.card[product_id]}")
+                    return [currentMoney, stock]        
+
+        self.updateGloablProduct()        
+
+
+iphone = Product("Iphone 13", 499.99, "AZERTY", 10, "ELECTRONIC", "EURO", "Hello")
+pcGamer = Product("PC Gamer", 999.99, "QWERTY", 20, "ELECTRONIC", "EURO", "Hello")
 card = Card()
-produitG = Product("Pc gamer", 900.00, "900", "asdasdasd", priceType="DOLLAR")
-card.addProduct(produitG.getProduct())
-produitP = Product("Pizza", 19.99, "20", "Description" )
-card.addProduct(produitP.getProduct())
-produitG = Product("Pc sad", 10920.00, "10920", "asdasdasd", priceType="DOLLAR")
-card.addProduct(produitG.getProduct())
 
+card.addProduct(iphone.getProduct())
+card.addProduct(pcGamer.getProduct())
+
+currentMoney = 2000
+
+try:
+    currentMoney, stock = card.buyProduct("PC Gamer", 2, currentMoney, "EURO" )
+except:
+    pass
+
+print(stock)
+print("\n")
 print(card.sortCardByLowerPrice())
-card.deleteProductId("10920")
-print(card.sortCardByLowerPrice())
-"""

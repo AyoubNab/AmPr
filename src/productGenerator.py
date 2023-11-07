@@ -1,9 +1,11 @@
 from Racine.product import Product
 from Racine.IdGenerator import GenerateId
+from Racine.card import Card
+
+card = Card()
 
 class CreateProduct:
     def __init__(self):
-        
         print("CREATE A NEW PRODUCT !")
         self.productName = str(input("Enter Product Name: "))
         self.productPrice = float(input("Enter Product Price: "))
@@ -18,6 +20,8 @@ class CreateProduct:
         except:
             print("Unable to create a product with the provided parameters.")
             return
-    
-x = CreateProduct()
-print(x.product)
+        response = str(input("Do you want to add a card to this product ? (Y / N) : "))
+
+        if response == "y" or response == "Y":
+            card.addProduct(self.product)
+

@@ -1,4 +1,4 @@
-from Racine.variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
+from variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
 class Product:
     def __init__(self, productName: str, productPrice: float, productId: str, productQuantity: int, productCategory: str ="ALL", priceType: str ="EURO", productDescription: str = "EMPTY"):
         #creation des variables necessaires pour le produit
@@ -119,3 +119,4 @@ class Product:
             self.productPrice = self.productPrice * COEFFICIENT_EURO
             self.priceType = "EURO"
        
+    
