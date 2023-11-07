@@ -14,6 +14,7 @@ Utilisation
 Product.py
 Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs attributs :
 ```python
+{
 “productName” : le nom du produit
 “productPrice” : le prix du produit
 “productId” : l’identifiant du produit
@@ -21,6 +22,7 @@ Product.py est la base du produit. Il s’agit d’une classe qui a plusieurs at
 “productCategory” : la catégorie du produit
 “priceType” : la monnaie utilisée, soit EURO / DOLLAR
 “productDescription” : la description du produit
+}
 ```
 
 Voici comment vous pouvez créer un produit :
