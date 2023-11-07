@@ -1,6 +1,6 @@
-from variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
-from IdGenerator import GenerateId
-from product import Product
+from Racine.variable import COEFFICIENT_EURO, COEFFICIENT_DOLLAR
+from Racine.IdGenerator import GenerateId
+from Racine.product import Product
 
 class Card:
     def __init__(self):
@@ -162,22 +162,3 @@ class Card:
                     return [currentMoney, stock]        
 
         self.updateGloablProduct()        
-
-
-iphone = Product("Iphone 13", 499.99, "AZERTY", 10, "ELECTRONIC", "EURO", "Hello")
-pcGamer = Product("PC Gamer", 999.99, "QWERTY", 20, "ELECTRONIC", "EURO", "Hello")
-card = Card()
-
-card.addProduct(iphone.getProduct())
-card.addProduct(pcGamer.getProduct())
-
-currentMoney = 2000
-
-try:
-    currentMoney, stock = card.buyProduct("PC Gamer", 2, currentMoney, "EURO" )
-except:
-    pass
-
-print(stock)
-print("\n")
-print(card.sortCardByLowerPrice())
