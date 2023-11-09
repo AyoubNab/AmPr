@@ -97,7 +97,6 @@ class Card:
         #verification du currentMoneyType
         if currentMoneyType != "EURO" and currentMoneyType != "DOLLAR":
             currentMoneyType = "EURO"
-
         product_id = self.getProductId(productName)
         price = 0
         #verification de la quantité de produits
@@ -110,7 +109,6 @@ class Card:
             price *= quantity
             if price > currentMoney:
                 return
-            print(f"NEW CURRENT MONEY = {price}")
             currentMoney -= price
             stock = self.__buy__(productName, quantity, product_id)
             return [currentMoney, stock]
